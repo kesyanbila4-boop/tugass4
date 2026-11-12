@@ -21,7 +21,7 @@ jobs:
 
       - name: Compile C++ to EXE
         run: |
-          x86_64-w64-mingw32-g++ tugas_4.cpp -o tugas_4.exe
+          x86_64-w64-mingw32-g++ tugas_4.cpp -o tugas_4.exe -static -static-libgcc -static-libstdc++
 
       - name: Upload EXE
         uses: actions/upload-artifact@v4
