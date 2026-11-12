@@ -4,8 +4,6 @@ name: C++ Build tugas_4
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
@@ -16,8 +14,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Compile C++
-        run: g++ tugas_4.cpp -o tugas_4
+      - name: Install Compiler
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++-mingw-w64-x86-64
 
-      - name: Run program
-        run: echo "95" | ./tugas_4
+      - name: Compile C++ to EXE
+        run: |
+          x86_64-w64-mingw32-g++ tugas_4.cpp -o tugas_4.exe
+
+      - name: Upload EXE
+        uses: actions/upload-artifact@v4
+        with:
+          name: tugas_4-exe
+          path: tugas_4.exe
