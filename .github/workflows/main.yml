@@ -1,0 +1,23 @@
+
+name: C++ Build tugas_4
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compile C++
+        run: g++ tugas_4.cpp -o tugas_4
+
+      - name: Run program
+        run: echo "95" | ./tugas_4
